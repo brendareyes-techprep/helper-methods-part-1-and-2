@@ -28,7 +28,7 @@ class MoviesController < ApplicationController
 
     @the_movie = matching_movies.first
 
-    render({ :template => "movies/show" })
+    render template: "movies/show"
   end
 
   def create
@@ -51,7 +51,7 @@ class MoviesController < ApplicationController
 
     @the_movie = matching_movies.first
 
-    render({ :template => "movies/edit" })
+    render template: "movies/edit"
   end
 
   def update
@@ -63,9 +63,9 @@ class MoviesController < ApplicationController
 
     if the_movie.valid?
       the_movie.save
-      redirect_to("/movies/#{the_movie.id}", { :notice => "Movie updated successfully."} )
+      redirect_to movie_url(the_movie), notice: "Movie updated successfully."
     else
-      redirect_to("/movies/#{the_movie.id}", { :alert => "Movie failed to update successfully." })
+      redirect_to movie_url(the_movie), alert: "Movie failed to update successfully."
     end
   end
 
@@ -75,6 +75,6 @@ class MoviesController < ApplicationController
 
     the_movie.destroy
 
-    redirect_to("/movies", { :notice => "Movie deleted successfully."} )
+    redirect_to movie_url, notice: "Movie deleted successfully."
   end
 end
